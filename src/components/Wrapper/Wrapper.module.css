@@ -1,6 +1,6 @@
 .wrap {
   max-width: var(--wrapper-width);
-  min-height: calc(100vh - var(--footer-height));
+  min-height: calc(100vh - var(--footer-height) - var(--header-height));
   margin: auto;
   padding: 10px 10px 0;
 }

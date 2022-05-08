@@ -23,5 +23,11 @@ textarea {
 
 :root {
   --wrapper-width: 1200px;
+  --header-height: 22px;
   --footer-height: 40px;
+  --color-white: #fff;
+  --color-dark: rgb(31, 27, 27);
+  --color-light-gray: rgb(230 230 230);
+  --color-gray: rgb(179, 178, 178);
+  --color-primary: rgb(126, 49, 250);
 }

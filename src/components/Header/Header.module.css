@@ -1,0 +1,6 @@
+.header {
+  max-width: var(--wrapper-width);
+  height: var(--header-height);
+  margin: auto;
+  padding: 0 10px;
+}

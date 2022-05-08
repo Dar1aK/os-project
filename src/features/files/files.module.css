@@ -6,6 +6,10 @@
   width: 100%;
 }
 
+.table tr:nth-child(even) {
+  background: var(--color-light-gray);
+}
+
 .table td {
   padding: 5px;
 }

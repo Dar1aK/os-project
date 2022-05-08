@@ -1,0 +1,10 @@
+.btn {
+  padding: 4px 10px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+}
+
+.btn + .btn {
+  margin-left: 10px;
+}

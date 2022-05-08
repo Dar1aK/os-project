@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Textarea from "../../components/Textarea";
 
+import Button from "../../components/Button";
+import Input from "../../components/Input";
+import Textarea from "../../components/Textarea";
 import Wrapper from "../../components/Wrapper";
+import WithClose from "../../hocs/Close";
 
 import styles from "./files.module.css";
 
@@ -35,7 +38,7 @@ const Add = () => {
     switch (e.detail) {
       case 1:
         console.log("click");
-        handleEdit(e, name);
+        handleEdit(name);
         break;
       case 2:
         console.log("double click");
@@ -56,10 +59,7 @@ const Add = () => {
     return value;
   };
 
-  const handleEdit = (
-    e: React.MouseEvent<HTMLTableRowElement>,
-    name: string
-  ) => {
+  const handleEdit = (name: string) => {
     const path = `${checkSlash(dir)}${name}`;
     fetch("/open", {
       method: "POST",
@@ -98,6 +98,26 @@ const Add = () => {
       .catch(console.log);
   };
 
+  const handleAdd = (file: string) => {
+    const path = `${checkSlash(dir)}${file}`;
+    fetch("/save", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ file: path, content: text }),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data.message);
+        setText("");
+        setFileName("");
+        setOpenFile("");
+        setCreateFile(false);
+      })
+      .catch(console.log);
+  };
+
   const handleBack = () => {
     const arr = dir.split("/");
     arr.pop();
@@ -114,7 +134,7 @@ const Add = () => {
 
   return (
     <Wrapper>
-      <input
+      <Input
         type="text"
         name="dir"
         value={dir}
@@ -124,40 +144,41 @@ const Add = () => {
         <a onClick={handleBack}>Back</a>
       </div>
       <div>
-        <button
+        <Button
           type="submit"
           onClick={() => {
             setOpenFile("");
             setText("");
             setCreateFile(true);
           }}
-        >
-          Create new .txt file
-        </button>
+          value="Create new .txt file"
+        />
       </div>
 
       {list?.length > 0 && (
         <table className={styles.table}>
-          <tr>
-            <th>Name</th>
-            <th>Create date</th>
-            <th>Last modified date</th>
-            <th>Size</th>
-          </tr>
-          {list?.map(({ name, stat: { birthtime, mtime, size } }) => (
-            <tr
-              key={name}
-              onClick={(e: React.MouseEvent<HTMLTableRowElement>) =>
-                handleClick(e, name)
-              }
-              className={styles.listLink}
-            >
-              <td>{name}</td>
-              <td>{birthtime && new Date(birthtime).toLocaleString()}</td>
-              <td>{mtime && new Date(mtime).toLocaleString()}</td>
-              <td>{size > 0 ? prepareSize(size) : ""}</td>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Create date</th>
+              <th>Last modified date</th>
+              <th>Size</th>
             </tr>
-          ))}
+          </thead>
+          <tbody>
+            {list?.map(({ name, stat: { birthtime, mtime, size } }) => (
+              <tr
+                key={name}
+                onClick={() => handleEdit(name)}
+                className={styles.listLink}
+              >
+                <td>{name}</td>
+                <td>{birthtime && new Date(birthtime).toLocaleString()}</td>
+                <td>{mtime && new Date(mtime).toLocaleString()}</td>
+                <td>{size > 0 ? prepareSize(size) : ""}</td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       )}
 
@@ -171,24 +192,26 @@ const Add = () => {
               setText(e.target.value)
             }
           />
-          <button type="submit" onClick={() => handleSave(openChangeFile)}>
-            Save changes
-          </button>
-          <button
+          <Button
+            type="submit"
+            onClick={() => handleSave(openChangeFile)}
+            value="Save changes"
+          />
+
+          <Button
             type="submit"
             onClick={() => {
               setText("");
               setOpenFile("");
             }}
-          >
-            Close without saving
-          </button>
+            value="Close without saving"
+          />
         </>
       )}
 
       {openCreateFile && (
         <>
-          <input
+          <Input
             type="text"
             placeholder="New file's name"
             value={createFileName}
@@ -201,22 +224,25 @@ const Add = () => {
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
-          <button type="submit" onClick={() => handleSave(createFileName)}>
-            Create file
-          </button>
-          <button
+          <Button
+            type="submit"
+            onClick={() => handleAdd(createFileName)}
+            value="Create file"
+          />
+
+          <Button
             type="submit"
             onClick={() => {
+              setFileName("");
               setText("");
               setCreateFile(false);
             }}
-          >
-            Close without saving
-          </button>
+            value="Close without saving"
+          />
         </>
       )}
     </Wrapper>
   );
 };
 
-export default Add;
+export default WithClose(Add);
