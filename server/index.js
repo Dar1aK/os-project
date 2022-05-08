@@ -28,7 +28,9 @@ app.post("/post", (req, res) => {
         }
         return {
           name: file,
-          stat,
+          birthtime: stat.birthtime,
+          mtime: stat.mtime,
+          size: stat.size,
         };
       });
       console.log(files);

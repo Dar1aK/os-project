@@ -9,7 +9,8 @@
   width: 25px;
   height: 25px;
   padding: 10px;
-  background: var(--color-gray);
+  background: var(--color-gray) url("../../assets/icons/close.svg") no-repeat
+    center/70%;
   border-radius: 50%;
   cursor: pointer;
 }

@@ -1,0 +1,32 @@
+.table {
+  width: 100%;
+}
+
+.table tr:nth-child(even) {
+  background: var(--color-light-gray);
+}
+
+.table td {
+  padding: 5px;
+}
+
+.listLink {
+  cursor: pointer;
+}
+
+.head:after {
+  content: "";
+  display: none;
+  width: 12px;
+  height: 8px;
+  transform: rotate(90deg);
+  background: url("../../../../assets/icons/arrow-right.svg") no-repeat center;
+}
+
+.head--active:after {
+  display: inline-block;
+}
+
+.head--desc:after {
+  transform: rotate(90deg) scaleX(-1);
+}

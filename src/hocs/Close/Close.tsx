@@ -9,9 +9,7 @@ const WithClose =
     const history = useNavigate();
     return (
       <div className={styles.container}>
-        <div className={styles.close} onClick={() => history("/")}>
-          X
-        </div>
+        <div className={styles.close} onClick={() => history("/")} />
         <Component {...props} />
       </div>
     );
