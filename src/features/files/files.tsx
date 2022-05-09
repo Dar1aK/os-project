@@ -8,17 +8,13 @@ import TableFiles from "./components/TableFiles";
 import Textarea from "../../components/Textarea";
 import Wrapper from "../../components/Wrapper";
 import WithClose from "../../hocs/Close";
-import { ListFilesType } from "./types";
 import {
   getDirAsync,
   selectFiles,
   saveFileAsync,
   changeDirectory,
-  clearDirectory,
   openFileAsync,
 } from "./filesSlice";
-
-import styles from "./files.module.css";
 
 const Add = () => {
   const dispatch = useAppDispatch();

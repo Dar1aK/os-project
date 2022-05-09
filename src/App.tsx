@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 import Auth from "./features/auth";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { selectStatus } from "./features/auth/authSlice";
+import Camera from "./features/camera";
 
 function App() {
   const state = useAppSelector(selectStatus);
@@ -25,6 +26,14 @@ function App() {
             element={
               <ProtectedRoute auth={state}>
                 <Files />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/camera"
+            element={
+              <ProtectedRoute auth={state}>
+                <Camera />
               </ProtectedRoute>
             }
           />

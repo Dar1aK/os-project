@@ -8,6 +8,7 @@ const Desktop = () => {
   return (
     <Wrapper classname={styles.layout}>
       <Card link="/files">Open files</Card>
+      <Card link="/camera">Access to camera</Card>
     </Wrapper>
   );
 };
