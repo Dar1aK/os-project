@@ -2,16 +2,12 @@ import React, { FC } from "react";
 
 import styles from "./Input.module.css";
 
-const Input: FC<{
-  classname?: string;
-  name?: string;
-  id?: string;
-  placeholder?: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  type: "text" | "password";
-}> = ({ classname = "", ...props }) => (
-  <input className={`${styles.input} ${classname}`} {...props} />
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  className?: string;
+}
+
+const Input: FC<InputProps> = ({ className = "", ...props }) => (
+  <input className={`${styles.input} ${className}`} {...props} />
 );
 
 export default Input;

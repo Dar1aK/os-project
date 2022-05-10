@@ -20,7 +20,7 @@ const Add = () => {
   const dispatch = useAppDispatch();
   const { list: files, currentDir } = useAppSelector(selectFiles);
   const [text, setText] = useState("");
-  const [openChangeFile, setOpenFile] = useState("");
+  const [openedForChangeFile, setOpenedForChangeFile] = useState("");
   const [openCreateFile, setCreateFile] = useState(false);
   const [createFileName, setFileName] = useState("");
 
@@ -42,20 +42,19 @@ const Add = () => {
         dispatch(changeDirectory(path));
       } else {
         setText(payload.message);
-        setOpenFile(path);
-        console.log(payload.message);
+        setOpenedForChangeFile(path);
+        setFileName("");
+        setCreateFile(false);
       }
-      console.log("edit", payload);
     });
   };
 
-  const handleSave = (file: string) => {
-    const body = { file, content: text };
-    console.log("changes", body);
+  const handleSave = (path: string) => {
+    const body = { file: path, content: text };
     dispatch(saveFileAsync(body))
       .then(() => {
         setText("");
-        setOpenFile("");
+        setOpenedForChangeFile("");
         setCreateFile(false);
       })
       .catch(console.log);
@@ -68,7 +67,7 @@ const Add = () => {
       .then(() => {
         setText("");
         setFileName("");
-        setOpenFile("");
+        setOpenedForChangeFile("");
         setCreateFile(false);
       })
       .catch(console.log);
@@ -78,6 +77,10 @@ const Add = () => {
     const arr = currentDir.split("/");
     arr.pop();
     dispatch(changeDirectory((arr.length > 0 && arr.join("/")) || "/"));
+    setText("");
+    setFileName("");
+    setOpenedForChangeFile("");
+    setCreateFile(false);
   };
 
   return (
@@ -95,7 +98,7 @@ const Add = () => {
         <Button
           type="submit"
           onClick={() => {
-            setOpenFile("");
+            setOpenedForChangeFile("");
             setText("");
             setCreateFile(true);
           }}
@@ -105,7 +108,7 @@ const Add = () => {
 
       <TableFiles list={files} onClick={handleEdit} />
 
-      {openChangeFile && (
+      {openedForChangeFile && (
         <>
           <Textarea
             name="change"
@@ -117,7 +120,7 @@ const Add = () => {
           />
           <Button
             type="submit"
-            onClick={() => handleSave(openChangeFile)}
+            onClick={() => handleSave(openedForChangeFile)}
             value="Save changes"
           />
 
@@ -125,7 +128,7 @@ const Add = () => {
             type="submit"
             onClick={() => {
               setText("");
-              setOpenFile("");
+              setOpenedForChangeFile("");
             }}
             value="Close without saving"
           />

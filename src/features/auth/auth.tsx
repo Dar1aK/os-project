@@ -34,12 +34,14 @@ const Auth = () => {
         type="text"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
+        className={styles.input}
       />
       <Input
         placeholder="Password"
         type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
+        className={styles.input}
       />
       <Button type="submit" onClick={handleAuth} value="Auth" />
       {error && <p className={styles.error}>{error}</p>}

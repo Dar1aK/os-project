@@ -6,6 +6,7 @@
   position: absolute;
   right: 10px;
   top: 10px;
+  z-index: 1;
   width: 25px;
   height: 25px;
   padding: 10px;

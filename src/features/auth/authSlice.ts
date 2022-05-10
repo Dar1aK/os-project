@@ -29,7 +29,6 @@ export const authAsync = createAsyncThunk(
   async (body: AuthRequest) => {
     try {
       const response = await userAuth(body);
-      console.log("response", response);
       return response;
     } catch (e: any) {
       return Promise.reject(e?.error);

@@ -1,8 +1,6 @@
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font: 16px/1.4 Arial, Helvetica, sans-serif;
 }
 
 code {
@@ -21,10 +19,17 @@ textarea {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+input,
+textarea,
+button {
+  font-size: 14px;
+}
+
 :root {
   --wrapper-width: 1200px;
   --header-height: 22px;
   --footer-height: 40px;
+  --border-radius: 4px;
   --color-white: #fff;
   --color-dark: rgb(31, 27, 27);
   --color-light-gray: rgb(230 230 230);

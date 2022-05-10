@@ -2,15 +2,13 @@ import React, { FC } from "react";
 
 import styles from "./Textarea.module.css";
 
-const Textarea: FC<{
-  classname?: string;
-  name?: string;
-  id?: string;
-  placeholder?: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-}> = ({ classname = "", ...props }) => (
-  <textarea className={`${styles.txt} ${classname}`} {...props} />
+interface TextareaProps
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+  className?: string;
+}
+
+const Textarea: FC<TextareaProps> = ({ className = "", ...props }) => (
+  <textarea className={`${styles.txt} ${className}`} {...props} />
 );
 
 export default Textarea;

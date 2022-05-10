@@ -2,15 +2,12 @@ import React, { FC } from "react";
 
 import styles from "./Button.module.css";
 
-const Button: FC<{
-  classname?: string;
-  name?: string;
-  id?: string;
-  value: string;
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  type: "submit" | "button";
-}> = ({ classname = "", value, ...props }) => (
-  <button className={`${styles.btn} ${classname}`} {...props}>
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  className?: string;
+}
+
+const Button: FC<ButtonProps> = ({ className = "", value, ...props }) => (
+  <button className={`${styles.btn} ${className}`} {...props}>
     {value}
   </button>
 );

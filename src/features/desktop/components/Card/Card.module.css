@@ -4,5 +4,11 @@
   align-self: flex-start;
   margin-bottom: 20px;
   background: #c7d3dd;
-  border-radius: 4px;
+  border-radius: var(--border-radius);
+}
+
+@media (max-width: 768px) {
+  .wrap {
+    width: 100%;
+  }
 }

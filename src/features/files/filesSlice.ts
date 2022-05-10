@@ -68,9 +68,6 @@ export const filesSlice = createSlice({
     changeDirectory: (state, action: PayloadAction<string>) => {
       state.currentDir = action.payload;
     },
-    clearDirectory: (state) => {
-      state.currentDir = initialState.currentDir;
-    },
     sortTable: (
       state,
       { payload }: PayloadAction<{ name: SortNames; type: SortTypes }>
@@ -97,25 +94,24 @@ export const filesSlice = createSlice({
         state.status = "failed";
         state.error = error.message || "Something happend. Try later";
       })
-      .addCase(openFileAsync.fulfilled, (state, { payload }) => {
+      .addCase(openFileAsync.fulfilled, (state) => {
         state.status = "success";
-        console.log("open", payload);
       })
-      .addCase(saveFileAsync.fulfilled, (state, { payload }) => {
+      .addCase(saveFileAsync.fulfilled, (state) => {
         state.status = "success";
-        console.log("save", payload);
       });
   },
 });
 
 const sortArrayByProperty = (
-  list: any[],
+  list: ListFilesType[],
   sort: {
     name: SortNames;
     type: SortTypes;
   }
 ) => {
   const { name, type } = sort;
+  if (!list?.length) return [];
   const newList = [...list].sort((a, b) => {
     if (type === "asc") {
       if (a[name] > b[name]) {
@@ -141,7 +137,6 @@ export const selectFiles = (state: RootState) => state.files;
 
 export const selectSort = (state: RootState) => state.files.sort;
 
-export const { changeDirectory, clearDirectory, sortTable } =
-  filesSlice.actions;
+export const { changeDirectory, sortTable } = filesSlice.actions;
 
 export default filesSlice.reducer;

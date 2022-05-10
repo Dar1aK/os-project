@@ -1,7 +1,4 @@
-// server/index.js
-
 const express = require("express");
-var bodyParser = require("body-parser");
 var fs = require("fs");
 
 const app = express();
@@ -12,7 +9,6 @@ app.use(express.json());
 
 /** Get files/directories from directory */
 app.post("/post", (req, res) => {
-  console.log("req*-*", req, "*-*", req.body, req.params);
   const { directory } = req.body;
 
   fs.readdir(directory, (err, files) => {
@@ -45,9 +41,9 @@ app.post("/open", (req, res) => {
 
   try {
     if (fs.lstatSync(file).isFile()) {
-      console.log("file exists");
+      // this is file
       fs.readFile(file, "utf8", function (err, data) {
-        // Display the file content
+        // file content
         console.log(data);
         if (err) {
           console.log(err);
@@ -59,7 +55,7 @@ app.post("/open", (req, res) => {
         }
       });
     } else {
-      console.log("directory");
+      // this is directory
       res.json({ type: "directory" });
     }
   } catch (err) {
@@ -73,24 +69,6 @@ app.post("/save", (req, res) => {
 
   try {
     fs.writeFile(file, content, (err, data) => {
-      if (err) {
-        return res
-          .status(400)
-          .json({ error: "Error of writting. Try again later!" });
-      }
-      return res.json({ message: data });
-    });
-  } catch (err) {
-    res.status(400).json({ error: "Sorry, this is error. Try again later!" });
-  }
-});
-
-/** Create file */
-app.post("/add", (req, res) => {
-  const { file, content } = req.body;
-
-  try {
-    fs.writeFile(file, content, { flag: "a+" }, (err, data) => {
       if (err) {
         return res
           .status(400)

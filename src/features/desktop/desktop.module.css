@@ -2,3 +2,10 @@
   display: flex;
   justify-content: space-between;
 }
+
+@media (max-width: 768px) {
+  .layout {
+    justify-content: flex-start;
+    flex-direction: column;
+  }
+}

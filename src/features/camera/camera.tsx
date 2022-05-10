@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import Button from "../../components/Button";
 import Wrapper from "../../components/Wrapper";
 import WithClose from "../../hocs/Close";
 
@@ -9,13 +10,12 @@ const Camera = () => {
   const [inRecord, setInRecord] = useState(false);
   const [href, setHref] = useState("");
   const [download, setDownload] = useState("");
-  let mediaRecorder: any;
+  const [mediaRecorder, setMedia] = useState<MediaRecorder | null>(null);
 
   const onStart = () => {
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: true })
       .then((stream) => {
-        console.log(videoStream.current);
         if (videoStream.current) {
           videoStream.current.srcObject = stream;
         }
@@ -23,50 +23,50 @@ const Camera = () => {
       })
       .then((stream) => {
         const options = { mimeType: "video/webm" };
-        const recordedChunks: any[] = [];
-        mediaRecorder = new MediaRecorder(stream, options);
+        const media = new MediaRecorder(stream, options);
+        setMedia(media);
+        return media;
+      })
+      .then((media) => {
+        const recordedChunks: Blob[] = [];
+
         setInRecord(true);
 
-        mediaRecorder.addEventListener("dataavailable", function (e: any) {
-          console.log("dataavailable", e.data.size);
+        media.addEventListener("dataavailable", function (e) {
           if (e.data.size > 0) {
             recordedChunks.push(e.data);
           }
         });
 
-        mediaRecorder.addEventListener("stop", function () {
+        media.addEventListener("stop", function () {
           setInRecord(false);
-          console.log("stop mr");
           setHref(URL.createObjectURL(new Blob(recordedChunks)));
           setDownload("media.webm");
         });
 
-        mediaRecorder.start();
-        console.log("mediaRecorder", mediaRecorder);
+        media.start();
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch(console.log);
   };
 
   useEffect(() => {
-    navigator.mediaDevices.getUserMedia({ video: true }); //, audio: true
+    navigator.mediaDevices.getUserMedia({ video: true, audio: true });
   }, []);
 
   return (
     <Wrapper>
       <video autoPlay className={styles.video} ref={videoStream} />
-      <button
+      <Button
+        type="button"
         id="stop"
-        onClick={() => {
-          mediaRecorder?.stop();
-        }}
-      >
-        Stop
-      </button>
-      <button id="start" onClick={onStart}>
-        Start
-      </button>
+        onClick={() => mediaRecorder?.stop()}
+        value="Stop"
+        disabled={!inRecord}
+      />
+      <Button type="button" id="start" onClick={onStart} value="Start" />
+
+      <div>You can make a video and save it to your computer.</div>
+      {inRecord && <p>ON AIR!</p>}
 
       {href && (
         <div>
