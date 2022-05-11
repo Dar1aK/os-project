@@ -1,3 +1,53 @@
+## For reviewers ☀️
+
+For run this project:
+
+1. Install node_modules with command
+
+```
+npm i
+```
+
+2. In first terminal run express backend
+
+```
+npm run node
+```
+
+3. In second terminal run frontend app
+
+```
+npm run start
+```
+
+### Realised functionality:
+
+- Creating and managing plain text files
+- Sort files
+- Simple authentication
+- Ability to record and then save video
+- Typescript is used
+- Redux Toolkit is used for state management
+
+### Next steps for extension development:
+
+- Add production authentication with backend and REST API
+- Add markup with production design
+- Add unit tests for pages and components
+- Add search files and directories with node-findit
+- Add ability to create directories with mkdir
+- Web browser with iframe
+- Add gallery for view pictures
+- Add slider for gallery, like slick
+- Add RSS and pagination, search posts
+
+### Comments
+
+- I don't have much experience in working with Node.js, so it took time to sort it out.
+- Also I have never worked with `MediaRecorder` and video streaming before. I didn't want to use some third library for work with video so it took a lot of time from me.
+  Now I understand that I should do more simple tasks first, like images gallery or reader.
+  I have had nice experience in working with these technologies!
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.

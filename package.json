@@ -9,7 +9,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "tsc --noEmit && eslint src/**/*.ts{,x}",
+    "lint:fix": "eslint src/**/*.ts{,x} --fix",
+    "stylelint": "stylelint \"src/**/*.@(css)\"",
+    "stylelint:fix": "stylelint \"src/**/*.@(css)\" --fix"
   },
   "keywords": [],
   "author": "",

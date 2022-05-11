@@ -5,8 +5,3 @@ export type AuthResponse = {
   email: string;
   lastname: string;
 };
-
-export type AuthError = {
-  access: boolean;
-  error: string;
-};
