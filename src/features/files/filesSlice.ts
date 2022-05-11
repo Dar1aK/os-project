@@ -62,7 +62,7 @@ export const saveFileAsync = createAsyncThunk(
 );
 
 export const filesSlice = createSlice({
-  name: "auth",
+  name: "files",
   initialState,
   reducers: {
     changeDirectory: (state, action: PayloadAction<string>) => {

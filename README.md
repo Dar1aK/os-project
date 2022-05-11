@@ -26,6 +26,8 @@ npm run start
 - Sort files
 - Simple authentication
 - Ability to record and then save video
+- Add gallery for view pictures, pagination
+- Add detail page for pictures and comments
 - Typescript is used
 - Redux Toolkit is used for state management
 
@@ -37,7 +39,6 @@ npm run start
 - Add search files and directories with node-findit
 - Add ability to create directories with mkdir
 - Web browser with iframe
-- Add gallery for view pictures
 - Add slider for gallery, like slick
 - Add RSS and pagination, search posts
 

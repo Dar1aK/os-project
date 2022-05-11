@@ -3,14 +3,16 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useAppSelector } from "./app/hooks";
 
+import Auth from "./features/auth";
+import Camera from "./features/camera";
 import Files from "./features/files";
+import Gallery from "./features/gallery";
+import GalleryDetail from "./features/gallery/galleryDetail";
 import Desktop from "./features/desktop";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Auth from "./features/auth";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { selectStatus } from "./features/auth/authSlice";
-import Camera from "./features/camera";
 
 function App() {
   const state = useAppSelector(selectStatus);
@@ -34,6 +36,22 @@ function App() {
             element={
               <ProtectedRoute auth={state}>
                 <Camera />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/gallery"
+            element={
+              <ProtectedRoute auth={state}>
+                <Gallery />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/gallery/:id"
+            element={
+              <ProtectedRoute auth={state}>
+                <GalleryDetail />
               </ProtectedRoute>
             }
           />

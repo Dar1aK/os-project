@@ -1,0 +1,48 @@
+.card {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+a:nth-child(even) .card {
+  flex-direction: row-reverse;
+}
+
+.card__text {
+  display: flex;
+  padding: 15px;
+}
+
+.card__text h2 {
+  margin: auto;
+}
+
+.img {
+  display: block;
+  margin: auto;
+}
+
+.comment {
+  border-bottom: 1px solid var(--color-gray);
+}
+
+.pages {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.activePage {
+  font-weight: bold;
+}
+
+@media (max-width: 992px) {
+  .card,
+  a:nth-child(even) .card {
+    /* justify-content: flex-start; */
+    flex-direction: column;
+  }
+
+  .card__text h2 {
+    margin: 0;
+  }
+}
