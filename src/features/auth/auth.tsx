@@ -11,8 +11,8 @@ import { authAsync, selectError } from "./authSlice";
 import styles from "./auth.module.css";
 
 const Auth = () => {
-  const [email, setEmail] = useState("borgoth@mordos.com"); //TODO: delete default
-  const [password, setPassword] = useState("12bindthem");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const history = useNavigate();
   const dispatch = useAppDispatch();
   const error = useAppSelector(selectError);
