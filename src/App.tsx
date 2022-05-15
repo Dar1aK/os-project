@@ -9,6 +9,7 @@ import Files from "./features/files";
 import Gallery from "./features/gallery";
 import GalleryDetail from "./features/gallery/galleryDetail";
 import Desktop from "./features/desktop";
+import NotFound from "./features/notFound";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -63,6 +64,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
 

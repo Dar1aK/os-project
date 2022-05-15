@@ -33,14 +33,14 @@ const Auth = () => {
         placeholder="Email"
         type="text"
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={(e) => setEmail(e.target.value.trim())}
         className={styles.input}
       />
       <Input
         placeholder="Password"
         type="password"
         value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={(e) => setPassword(e.target.value.trim())}
         className={styles.input}
       />
       <Button type="submit" onClick={handleAuth} value="Auth" />
