@@ -20,6 +20,11 @@ npm run node
 npm run start
 ```
 
+Credentials:
+
+- `borgoth@mordos.com`;
+- `12bindthem`;
+
 ### Realised functionality:
 
 - Creating and managing plain text files
@@ -31,7 +36,7 @@ npm run start
 - Typescript is used
 - Redux Toolkit is used for state management
 
-### Next steps for extension development:
+### Next steps for expand development:
 
 - Add production authentication with backend and REST API
 - Add markup with production design
