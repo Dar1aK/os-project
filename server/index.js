@@ -86,14 +86,14 @@ const PASSWORD = "123456";
 
 /** Auth */
 app.post("/auth", (req, res) => {
-  const { email, password } = req.body;
+  const { login, password } = req.body;
   //mock db
 
-  if (email === EMAIL && password === PASSWORD) {
+  if (login === EMAIL && password === PASSWORD) {
     return res.json({
       access: true,
       lastName: "Borgoth",
-      email: EMAIL,
+      login: EMAIL,
     });
   }
 

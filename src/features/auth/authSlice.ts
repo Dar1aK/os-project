@@ -5,7 +5,7 @@ import { AuthRequest } from "./types";
 
 export interface AuthState {
   authStatus: boolean;
-  email: string;
+  login: string;
   lastName: string;
   error: string;
   status: "success" | "loading" | "failed";
@@ -13,7 +13,7 @@ export interface AuthState {
 
 const initialState: AuthState = {
   authStatus: false,
-  email: "",
+  login: "",
   lastName: "",
   error: "",
   status: "success",
@@ -40,14 +40,14 @@ export const authSlice = createSlice({
       .addCase(authAsync.pending, (state) => {
         state.status = "loading";
         state.authStatus = false;
-        state.email = "";
+        state.login = "";
         state.lastName = "";
         state.error = "";
       })
       .addCase(authAsync.fulfilled, (state, { payload }) => {
         state.status = "success";
         state.authStatus = true;
-        state.email = payload.email;
+        state.login = payload.login;
         state.lastName = payload.lastName;
       })
       .addCase(authAsync.rejected, (state, { error }) => {

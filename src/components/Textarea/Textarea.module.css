@@ -2,6 +2,7 @@
   width: 100%;
   height: 200px;
   padding: 10px;
+  margin: 10px 0;
   border: var(--color-gray) solid 1px;
   border-radius: var(--border-radius);
 }

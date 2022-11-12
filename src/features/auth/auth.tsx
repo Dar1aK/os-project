@@ -11,21 +11,43 @@ import { authAsync, selectError } from "./authSlice";
 import styles from "./auth.module.css";
 
 const Auth = () => {
-  const [email, setEmail] = useState("");
+  const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
+  const [clientError, setClientError] = useState("");
   const history = useNavigate();
   const dispatch = useAppDispatch();
   const error = useAppSelector(selectError);
+
   const handleAuth = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const body = { email, password };
+    setClientError("");
 
+    if (!login) {
+      return setClientError("Login is required");
+    }
+
+    if (!password) {
+      return setClientError("Password is required");
+    }
+
+    if (login.length < 10) {
+      return setClientError("Login must be at least 6 characters");
+    }
+
+    if (password.length < 6) {
+      return setClientError("Password must be at least 6 characters");
+    }
+
+    const body = { login, password };
     dispatch(authAsync(body)).then(() => {
-      setEmail("");
+      setLogin("");
       setPassword("");
       history("/");
     });
   };
+
+  const commonError = clientError || error;
+
   return (
     <div className={styles.auth}>
       <Wrapper withoutHeader>
@@ -33,10 +55,10 @@ const Auth = () => {
           <h1 className={styles.h1}>Authorization</h1>
 
           <Input
-            placeholder="Email"
+            placeholder="Login"
             type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value.trim())}
+            value={login}
+            onChange={(e) => setLogin(e.target.value.trim())}
             className={styles.input}
           />
           <Input
@@ -46,8 +68,8 @@ const Auth = () => {
             onChange={(e) => setPassword(e.target.value.trim())}
             className={styles.input}
           />
-          <Button type="submit" value="Auth" />
-          {error && <p className={styles.error}>{error}</p>}
+          <Button type="submit" value="Auth" className={styles.button} />
+          {commonError && <p className={styles.error}>{commonError}</p>}
         </form>
       </Wrapper>
     </div>

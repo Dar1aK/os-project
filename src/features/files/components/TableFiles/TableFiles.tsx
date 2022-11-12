@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 
 import { useAppSelector, useAppDispatch } from "../../../../app/hooks";
 
@@ -12,7 +12,7 @@ type TableFilesProps = {
   onClick: (name: string) => void;
 };
 
-const TableFiles: FC<TableFilesProps> = ({ list, onClick }) => {
+const TableFiles = ({ list, onClick }: TableFilesProps) => {
   const dispatch = useAppDispatch();
   const sort = useAppSelector(selectSort);
 

@@ -25,12 +25,19 @@ button {
   font-size: 14px;
 }
 
+p,
+h1,
+h2 {
+  margin: 0;
+}
+
 :root {
   --wrapper-width: 1200px;
   --header-height: 42px;
   --footer-height: 40px;
   --border-radius: 4px;
   --color-white: #fff;
+  --color-error: #e13535;
   --color-dark: rgb(31, 27, 27);
   --color-light-gray: rgb(230 230 230);
   --color-gray: rgb(179, 178, 178);

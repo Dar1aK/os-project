@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 
 import styles from "./Textarea.module.css";
 
@@ -7,7 +7,7 @@ interface TextareaProps
   className?: string;
 }
 
-const Textarea: FC<TextareaProps> = ({ className = "", ...props }) => (
+const Textarea = ({ className = "", ...props }: TextareaProps) => (
   <textarea className={`${styles.txt} ${className}`} {...props} />
 );
 

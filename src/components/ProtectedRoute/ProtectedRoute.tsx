@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import { Navigate } from "react-router-dom";
 
 type ProtectedRouteProps = {
@@ -6,7 +6,7 @@ type ProtectedRouteProps = {
   auth: boolean;
 };
 
-const ProtectedRoute: FC<ProtectedRouteProps> = ({ auth, children }) => {
+const ProtectedRoute = ({ auth, children }: ProtectedRouteProps) => {
   if (auth) {
     return <>{children}</>;
   }

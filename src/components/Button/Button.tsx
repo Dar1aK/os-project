@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 
 import styles from "./Button.module.css";
 
@@ -18,12 +18,7 @@ const buttonColor = (color = "") => {
   }
 };
 
-const Button: FC<ButtonProps> = ({
-  className = "",
-  value,
-  color,
-  ...props
-}) => (
+const Button = ({ className = "", value, color, ...props }: ButtonProps) => (
   <button
     className={`${styles.btn} ${
       styles[`btn--${buttonColor(color)}`]

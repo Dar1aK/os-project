@@ -3,7 +3,6 @@
   color: var(--color-white);
   border: none;
   border-radius: var(--border-radius);
-  cursor: pointer;
 }
 
 .btn:hover {
@@ -12,6 +11,10 @@
 
 .btn:disabled {
   background: var(--color-gray);
+}
+
+.btn:not(:disabled) {
+  cursor: pointer;
 }
 
 .btn + .btn {

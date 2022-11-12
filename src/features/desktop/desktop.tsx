@@ -16,7 +16,7 @@ const Desktop = () => {
           <Card link="/camera">📸 Access to camera</Card>
           <Card link="/gallery">🖼️ Gallery</Card>
         </div>
-        <Link to="/auth">🔙 You can relogin here</Link>
+        <Link to="/auth">&#60; You can relogin here</Link>
       </Wrapper>
     </>
   );

@@ -44,6 +44,8 @@ const Gallery = () => {
                 placeholderSrc={thumbnailUrl}
                 src={url}
                 width={WIDTH}
+                style={{ maxWidth: "100%" }}
+                wrapperClassName={styles.wrapperImg}
               />
               <div className={styles.card__text}>
                 <h2>{title}</h2>

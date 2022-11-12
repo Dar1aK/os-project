@@ -68,8 +68,11 @@ const Camera = () => {
         />
         <Button type="button" id="start" onClick={onStart} value="Start" />
 
-        <div>You can make a video and save it to your computer.</div>
-        {inRecord && <p>ON AIR!</p>}
+        <div>
+          You can make a video and save it to your computer. You need to allow
+          access to your camera and microphone.
+        </div>
+        {inRecord && <p>🎤 ON AIR!</p>}
 
         {href && (
           <div>

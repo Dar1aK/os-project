@@ -3,11 +3,11 @@ import React, { useEffect, useState } from "react";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 
 import Button from "../../components/Button";
+import Header from "../../components/Header";
 import Input from "../../components/Input";
 import TableFiles from "./components/TableFiles";
 import Textarea from "../../components/Textarea";
 import Wrapper from "../../components/Wrapper";
-import Header from "../../components/Header";
 import WithClose from "../../hocs/Close";
 import {
   getDirAsync,
@@ -52,7 +52,8 @@ const Add = () => {
     });
   };
 
-  const handleSave = (path: string) => {
+  const handleSave = (e: React.FormEvent<HTMLFormElement>, path: string) => {
+    e.preventDefault();
     const body = { file: path, content: text };
     dispatch(saveFileAsync(body))
       .then(() => {
@@ -63,7 +64,8 @@ const Add = () => {
       .catch(console.log);
   };
 
-  const handleAdd = (file: string) => {
+  const handleAdd = (e: React.FormEvent<HTMLFormElement>, file: string) => {
+    e.preventDefault();
     const path = `${checkSlash(currentDir)}${file}`;
     const body = { file: path, content: text };
     dispatch(saveFileAsync(body))
@@ -100,7 +102,7 @@ const Add = () => {
           <Button
             type="button"
             onClick={handleBack}
-            value="Back"
+            value="&#60; Back"
             color="gray"
           />
           <Button
@@ -117,7 +119,7 @@ const Add = () => {
         <TableFiles list={files} onClick={handleEdit} />
 
         {openedForChangeFile && (
-          <>
+          <form onSubmit={(e) => handleSave(e, openedForChangeFile)}>
             <Textarea
               name="change"
               id=""
@@ -126,25 +128,22 @@ const Add = () => {
                 setText(e.target.value)
               }
             />
-            <Button
-              type="submit"
-              onClick={() => handleSave(openedForChangeFile)}
-              value="Save changes"
-            />
+            <Button type="submit" value="Save changes" />
 
             <Button
-              type="submit"
+              type="button"
               onClick={() => {
                 setText("");
                 setOpenedForChangeFile("");
               }}
               value="Close without saving"
+              color="gray"
             />
-          </>
+          </form>
         )}
 
         {openCreateFile && (
-          <>
+          <form onSubmit={(e) => handleAdd(e, createFileName)}>
             <Input
               type="text"
               placeholder="New file's name"
@@ -158,22 +157,19 @@ const Add = () => {
               value={text}
               onChange={(e) => setText(e.target.value)}
             />
-            <Button
-              type="submit"
-              onClick={() => handleAdd(createFileName)}
-              value="Create file"
-            />
+            <Button type="submit" value="Create file" />
 
             <Button
-              type="submit"
+              type="button"
               onClick={() => {
                 setFileName("");
                 setText("");
                 setCreateFile(false);
               }}
               value="Close without saving"
+              color="gray"
             />
-          </>
+          </form>
         )}
       </Wrapper>
     </>

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
+import Button from "../../components/Button";
 import Header from "../../components/Header";
 import Wrapper from "../../components/Wrapper";
 import WithClose from "../../hocs/Close";
@@ -30,7 +31,9 @@ const GalleryDetail = () => {
     <>
       <Header />
       <Wrapper>
-        <Link to="/gallery">Back</Link>
+        <Link to="/gallery">
+          <Button type="button" value="&#60; Back" />
+        </Link>
         <div>
           <h2>{title}</h2>
           <LazyLoadImage
