@@ -7,6 +7,7 @@ import Input from "../../components/Input";
 import TableFiles from "./components/TableFiles";
 import Textarea from "../../components/Textarea";
 import Wrapper from "../../components/Wrapper";
+import Header from "../../components/Header";
 import WithClose from "../../hocs/Close";
 import {
   getDirAsync,
@@ -15,6 +16,8 @@ import {
   changeDirectory,
   openFileAsync,
 } from "./filesSlice";
+
+import styles from "./files.module.css";
 
 const Add = () => {
   const dispatch = useAppDispatch();
@@ -84,90 +87,96 @@ const Add = () => {
   };
 
   return (
-    <Wrapper>
-      <Input
-        type="text"
-        name="dir"
-        value={currentDir}
-        onChange={(e) => dispatch(changeDirectory(e.target.value))}
-      />
-      <div>
-        <a onClick={handleBack}>Back</a>
-      </div>
-      <div>
-        <Button
-          type="submit"
-          onClick={() => {
-            setOpenedForChangeFile("");
-            setText("");
-            setCreateFile(true);
-          }}
-          value="Create new .txt file"
+    <>
+      <Header />
+      <Wrapper>
+        <Input
+          type="text"
+          name="dir"
+          value={currentDir}
+          onChange={(e) => dispatch(changeDirectory(e.target.value))}
         />
-      </div>
-
-      <TableFiles list={files} onClick={handleEdit} />
-
-      {openedForChangeFile && (
-        <>
-          <Textarea
-            name="change"
-            id=""
-            value={text}
-            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-              setText(e.target.value)
-            }
+        <div className={styles.btns}>
+          <Button
+            type="button"
+            onClick={handleBack}
+            value="Back"
+            color="gray"
           />
           <Button
-            type="submit"
-            onClick={() => handleSave(openedForChangeFile)}
-            value="Save changes"
-          />
-
-          <Button
-            type="submit"
+            type="button"
             onClick={() => {
-              setText("");
               setOpenedForChangeFile("");
-            }}
-            value="Close without saving"
-          />
-        </>
-      )}
-
-      {openCreateFile && (
-        <>
-          <Input
-            type="text"
-            placeholder="New file's name"
-            value={createFileName}
-            onChange={(e) => setFileName(e.target.value)}
-          />
-          <Textarea
-            name=""
-            id=""
-            placeholder="Content"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-          />
-          <Button
-            type="submit"
-            onClick={() => handleAdd(createFileName)}
-            value="Create file"
-          />
-
-          <Button
-            type="submit"
-            onClick={() => {
-              setFileName("");
               setText("");
-              setCreateFile(false);
+              setCreateFile(true);
             }}
-            value="Close without saving"
+            value="Create new .txt file"
           />
-        </>
-      )}
-    </Wrapper>
+        </div>
+
+        <TableFiles list={files} onClick={handleEdit} />
+
+        {openedForChangeFile && (
+          <>
+            <Textarea
+              name="change"
+              id=""
+              value={text}
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                setText(e.target.value)
+              }
+            />
+            <Button
+              type="submit"
+              onClick={() => handleSave(openedForChangeFile)}
+              value="Save changes"
+            />
+
+            <Button
+              type="submit"
+              onClick={() => {
+                setText("");
+                setOpenedForChangeFile("");
+              }}
+              value="Close without saving"
+            />
+          </>
+        )}
+
+        {openCreateFile && (
+          <>
+            <Input
+              type="text"
+              placeholder="New file's name"
+              value={createFileName}
+              onChange={(e) => setFileName(e.target.value)}
+            />
+            <Textarea
+              name=""
+              id=""
+              placeholder="Content"
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+            />
+            <Button
+              type="submit"
+              onClick={() => handleAdd(createFileName)}
+              value="Create file"
+            />
+
+            <Button
+              type="submit"
+              onClick={() => {
+                setFileName("");
+                setText("");
+                setCreateFile(false);
+              }}
+              value="Close without saving"
+            />
+          </>
+        )}
+      </Wrapper>
+    </>
   );
 };
 

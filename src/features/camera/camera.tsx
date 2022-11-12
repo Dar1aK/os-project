@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Button from "../../components/Button";
+import Header from "../../components/Header";
 import Wrapper from "../../components/Wrapper";
 import WithClose from "../../hocs/Close";
 
@@ -54,32 +55,35 @@ const Camera = () => {
   }, []);
 
   return (
-    <Wrapper>
-      <video autoPlay className={styles.video} ref={videoStream} />
-      <Button
-        type="button"
-        id="stop"
-        onClick={() => mediaRecorder?.stop()}
-        value="Stop"
-        disabled={!inRecord}
-      />
-      <Button type="button" id="start" onClick={onStart} value="Start" />
+    <>
+      <Header />
+      <Wrapper>
+        <video autoPlay className={styles.video} ref={videoStream} />
+        <Button
+          type="button"
+          id="stop"
+          onClick={() => mediaRecorder?.stop()}
+          value="Stop"
+          disabled={!inRecord}
+        />
+        <Button type="button" id="start" onClick={onStart} value="Start" />
 
-      <div>You can make a video and save it to your computer.</div>
-      {inRecord && <p>ON AIR!</p>}
+        <div>You can make a video and save it to your computer.</div>
+        {inRecord && <p>ON AIR!</p>}
 
-      {href && (
-        <div>
-          <h3>Preview</h3>
+        {href && (
           <div>
-            <a href={href} download={download}>
-              Download
-            </a>
+            <h3>Preview</h3>
+            <div>
+              <a href={href} download={download}>
+                Download
+              </a>
+            </div>
+            <video autoPlay className="attendee" src={href} controls />
           </div>
-          <video autoPlay className="attendee" src={href} controls />
-        </div>
-      )}
-    </Wrapper>
+        )}
+      </Wrapper>
+    </>
   );
 };
 

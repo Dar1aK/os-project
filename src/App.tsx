@@ -10,7 +10,6 @@ import Gallery from "./features/gallery";
 import GalleryDetail from "./features/gallery/galleryDetail";
 import Desktop from "./features/desktop";
 import NotFound from "./features/notFound";
-import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { selectStatus } from "./features/auth/authSlice";
@@ -20,7 +19,6 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
       <BrowserRouter>
         <Routes>
           <Route path="/auth" element={<Auth />} />

@@ -4,3 +4,7 @@
   margin: auto;
   padding: 10px 10px 0;
 }
+
+.wrap--without {
+  min-height: calc(100vh - var(--footer-height));
+}

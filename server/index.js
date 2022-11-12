@@ -81,8 +81,8 @@ app.post("/save", (req, res) => {
   }
 });
 
-const EMAIL = "borgoth@mordos.com";
-const PASSWORD = "12bindthem";
+const EMAIL = "example@gmail.com";
+const PASSWORD = "123456";
 
 /** Auth */
 app.post("/auth", (req, res) => {
@@ -93,7 +93,7 @@ app.post("/auth", (req, res) => {
     return res.json({
       access: true,
       lastName: "Borgoth",
-      email: "borgoth@mordos.com",
+      email: EMAIL,
     });
   }
 

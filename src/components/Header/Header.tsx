@@ -1,4 +1,3 @@
-import React from "react";
 import { useAppSelector } from "../../app/hooks";
 
 import { selectName } from "../../features/auth/authSlice";
@@ -10,7 +9,7 @@ const Header = () => {
   if (name) {
     return <header className={styles.header}>Hello, {name} 👋</header>;
   }
-  return <header className={styles.header} />;
+  return null;
 };
 
 export default Header;

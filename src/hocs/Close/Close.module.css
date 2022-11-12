@@ -10,8 +10,12 @@
   width: 25px;
   height: 25px;
   padding: 10px;
-  background: var(--color-gray) url("../../assets/icons/close.svg") no-repeat
-    center/60%;
+  background: var(--color-light-gray) url("../../assets/icons/close.svg")
+    no-repeat center/60%;
   border-radius: 50%;
   cursor: pointer;
+}
+
+.close:hover {
+  opacity: 0.8;
 }

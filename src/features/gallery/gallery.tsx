@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import Button from "../../components/Button";
+import Header from "../../components/Header";
 import Wrapper from "../../components/Wrapper";
 import WithClose from "../../hocs/Close";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
@@ -32,38 +33,41 @@ const Gallery = () => {
   };
 
   return (
-    <Wrapper>
-      {activeCards?.map(({ albumId, id, title, url, thumbnailUrl }) => (
-        <Link to={`/gallery/${id}`} key={`${id}${albumId}`}>
-          <div className={styles.card}>
-            <LazyLoadImage
-              height={HEIGHT}
-              placeholderSrc={thumbnailUrl}
-              src={url}
-              width={WIDTH}
-            />
-            <div className={styles.card__text}>
-              <h2>{title}</h2>
-            </div>
-          </div>
-        </Link>
-      ))}
-
-      <div className={styles.pages}>
-        {pages.map((_, i) => {
-          if (i <= activePage + 5 && i > activePage - 5)
-            return (
-              <Button
-                key={i}
-                className={activePage === i ? styles.activePage : ""}
-                type="button"
-                onClick={() => handleChangePage(i)}
-                value={i + 1}
+    <>
+      <Header />
+      <Wrapper>
+        {activeCards?.map(({ albumId, id, title, url, thumbnailUrl }) => (
+          <Link to={`/gallery/${id}`} key={`${id}${albumId}`}>
+            <div className={styles.card}>
+              <LazyLoadImage
+                height={HEIGHT}
+                placeholderSrc={thumbnailUrl}
+                src={url}
+                width={WIDTH}
               />
-            );
-        })}
-      </div>
-    </Wrapper>
+              <div className={styles.card__text}>
+                <h2>{title}</h2>
+              </div>
+            </div>
+          </Link>
+        ))}
+
+        <div className={styles.pages}>
+          {pages.map((_, i) => {
+            if (i <= activePage + 5 && i > activePage - 5)
+              return (
+                <Button
+                  key={i}
+                  className={activePage === i ? styles.activePage : ""}
+                  type="button"
+                  onClick={() => handleChangePage(i)}
+                  value={i + 1}
+                />
+              );
+          })}
+        </div>
+      </Wrapper>
+    </>
   );
 };
 

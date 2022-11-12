@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
+import Header from "../../components/Header";
 import Wrapper from "../../components/Wrapper";
 import WithClose from "../../hocs/Close";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
@@ -26,30 +27,33 @@ const GalleryDetail = () => {
   }, []);
 
   return (
-    <Wrapper>
-      <Link to="/gallery">Back</Link>
-      <div>
-        <h2>{title}</h2>
-        <LazyLoadImage
-          height={HEIGHT}
-          placeholderSrc={thumbnailUrl}
-          src={url}
-          width={WIDTH}
-          wrapperClassName={styles.img}
-        />
-      </div>
-      <div>
-        {comments.map(({ body, email, name, id, postId }) => (
-          <div key={`${id}${postId}`} className={styles.comment}>
-            <h3>{name}</h3>
-            <p>
-              <a href={`mailto:${email}`}>{email}</a>
-            </p>
-            <p>{body}</p>
-          </div>
-        ))}
-      </div>
-    </Wrapper>
+    <>
+      <Header />
+      <Wrapper>
+        <Link to="/gallery">Back</Link>
+        <div>
+          <h2>{title}</h2>
+          <LazyLoadImage
+            height={HEIGHT}
+            placeholderSrc={thumbnailUrl}
+            src={url}
+            width={WIDTH}
+            wrapperClassName={styles.img}
+          />
+        </div>
+        <div>
+          {comments.map(({ body, email, name, id, postId }) => (
+            <div key={`${id}${postId}`} className={styles.comment}>
+              <h3>{name}</h3>
+              <p>
+                <a href={`mailto:${email}`}>{email}</a>
+              </p>
+              <p>{body}</p>
+            </div>
+          ))}
+        </div>
+      </Wrapper>
+    </>
   );
 };
 

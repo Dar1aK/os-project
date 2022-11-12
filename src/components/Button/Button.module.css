@@ -1,9 +1,13 @@
 .btn {
   padding: 7px 15px;
-  background: var(--color-primary);
   color: var(--color-white);
   border: none;
   border-radius: var(--border-radius);
+  cursor: pointer;
+}
+
+.btn:hover {
+  opacity: 0.8;
 }
 
 .btn:disabled {
@@ -12,4 +16,14 @@
 
 .btn + .btn {
   margin-left: 10px;
+}
+
+.btn--color-primary {
+  background: var(--color-primary);
+}
+.btn--color-gray {
+  background: var(--color-gray);
+}
+.btn--color-dark {
+  background: var(--color-dark);
 }

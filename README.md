@@ -22,8 +22,8 @@ npm run start
 
 Credentials:
 
-- `borgoth@mordos.com`;
-- `12bindthem`;
+- `example@gmail.com`;
+- `123456`;
 
 ### Realised functionality:
 

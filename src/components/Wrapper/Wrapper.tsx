@@ -1,10 +1,21 @@
-import React, { FC } from "react";
+import React from "react";
 
 import styles from "./Wrapper.module.css";
 
-const Wrapper: FC<{ children: React.ReactNode; className?: string }> = ({
-  children,
-  className = "",
-}) => <div className={`${styles.wrap} ${className}`}>{children}</div>;
+interface WrapperProps {
+  children: React.ReactNode;
+  className?: string;
+  withoutHeader?: boolean;
+}
+
+const Wrapper = ({ children, className = "", withoutHeader }: WrapperProps) => (
+  <div
+    className={`${styles.wrap} ${
+      withoutHeader ? styles["wrap--without"] : ""
+    } ${className}`}
+  >
+    {children}
+  </div>
+);
 
 export default Wrapper;
